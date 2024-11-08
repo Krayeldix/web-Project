@@ -1,0 +1,245 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@400;500600700;800;&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+body{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #87A2FF;
+}
+.navbar {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    background-color: #536493; 
+    padding: 10px 0; 
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    z-index: 1000; /* Ensure navbar is above other content */
+}
+
+.navbar img {
+    height: 50px; 
+    margin: 5px 10px; /* Adjust margins around the logo */
+}
+
+.wrapper{
+    width: 500px;
+    height: 350px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    color: #fff;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 10px;
+    padding: 30px 40px;
+
+}
+.wrapper h1{
+font-size: 36px;
+text-align: center;
+}
+
+.wrapper .input-box{
+    position: relative;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.input-box input{
+    width: 400px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+   border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+color: #fff;
+}
+.input-box i {
+    right: 20px;
+    top: 50%;
+    transform: translate(-50%);
+    font-size: 20px;
+}
+
+ .btn {
+    margin-left: 50%;
+     width: 50%;
+     height: 45px;
+     background: #fff;
+     border: none;
+     outline: none;
+     border-radius: 40px;
+     font-size: 16px;
+     color: #333;
+     font-weight: 600;
+     transform: translate(-50%);
+     margin-top: 20px;
+}
+.btn:hover{
+    background-color: #536493; /* Change to your desired color */
+    color: #fff;
+}
+
+
+.tabs{
+
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9rem;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+}
+
+.tabs thead tr {
+    background-color: #009879;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+.employee {
+    padding:12px 15px;
+}
+.tabs th,
+.tabs td {
+    padding: 12px 15px;
+}
+
+.input-tabs{
+position:   relative;
+width: 80%;
+outline: none;
+font-size: 2.2em;
+padding: 10px 5px;
+line-height: 5%;
+border-radius: 10px;
+border:  2px solid #fff;
+background: #fff;
+transition: 0.1s ease;
+}
+
+.calender   {
+position:   relative;
+width: 80%;
+outline: none;
+font-size: 2.2em;
+padding: 10px 5px;
+line-height: 5%;
+border-radius: 10px;
+border:  2px solid #fff;
+background: #fff;
+transition: 0.1s ease;
+
+}
+
+.yrs    {
+position:   relative;
+width: 80%;
+outline: none;
+font-size: 2.2em;
+padding: 10px 5px;
+line-height: 5%;
+border-radius: 10px;
+border:  2px solid #fff;
+background: #fff;
+transition: 0.1s ease;
+}
+
+.button {
+     margin-left: 50%;
+     width: 30%;
+     height: 45px;
+     background: #fff;
+     border: none;
+     outline: none;
+     border-radius: 40px;
+     font-size: 16px;
+     color: #333;
+     font-weight: 600;
+     transform: translate(-50%);
+     margin-top: 20px;
+    }
+
+    .order {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9rem;
+        min-width: 400px;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+    }
+    .order thead tr {
+        background-color: #009879;
+        color: #fff;
+        text-align: left;
+        font-weight: bold;
+    }
+        .order tr,
+        .order th   {
+                padding:    12px 15px; ;
+        }
+
+
+.input-d {
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    height: 30px;
+    padding: 5px 5px;
+    border:  none;
+}
+
+.admin-body {
+    position: relative;
+    padding: 30px 10px;
+    width: 1000px;
+    height: 1000px;
+    background: transparent;
+}
+.addm{
+    text-align: center; 
+    padding: 20px;/* Centers the text horizontally */
+    margin: 0 auto;     /* Centers the element itself if block-level */
+    display: block;
+}
+.search-emp  {
+    position: relative;
+    width: 40%;
+    margin: auto;
+    display: flex;
+    gap: 20px;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+

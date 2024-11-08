@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Management System</title>
+<link rel="stylesheet" href="styles.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://dreamrecords.in/wp-content/uploads/2024/05/amazon.png" alt="Company Logo">
+    </div>
+
+    <div id="login" class="wrapper">
+        <form action="">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class="bx bxs-lock-alt"></i>
+            </div> 
+            <button type="button" onclick="login()" class="btn">Login</button>
+        </form>
+    </div>
+
+    <div id="EmployeePanel" class="tabs" style="display: none;">
+        <h2 class="employee">Employee Panel</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Department</th>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+            </tr>
+            </thead>
+            <tr>
+                <td><input class="input-tabs" type="text" id="empDepartment"></td>
+                <td><input class="input-tabs" type="text" id="empId"></td>
+                <td><input class="input-tabs" type="text" id="empName"></td>
+            </tr>
+        </table>
+        <div class="years">
+            <table>
+                <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Year</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <select id="empMonth" class="calender">
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </td>
+                    <td><input class="yrs" type="number" id="empYear" min="2000" max="2100" placeholder="Year"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="order">
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Shift</th>
+                    <th>In</th>
+                    <th>Out</th>
+                    <th>SA (mts)</th>
+                    <th>Reason</th>
+                    <th>Remarks</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td><input class="input-d" type="date" id="empShiftDate"></td>
+                    <td><input class="input-d" type="text" id="empShift"></td>
+                    <td><input class="input-d" type="time" id="empIn"></td>
+                    <td><input class="input-d" type="time" id="empOut"></td>
+                    <td><input class="input-d" type="number" id="empSA"></td>
+                    <td>
+                        <select class="input-d" id="empReason">
+                            <option value="Personal">Personal</option>
+                            <option value="Company">Company</option>
+                        </select>
+                    </td>
+                    <td><input class="input-d" type="text" id="empRemarks"></td>
+                </tr>
+            </table>
+            <button class="button" onclick="saveEmployeeData()">Submit</button>
+            <button class="button" onclick="goBack()">LogOut</button>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="admin-body" style="display: none;">
+        <h2 class="addm">Admin Panel</h2>
+        <input type="text" class="search-emp" id="searchEmployeeId" placeholder="Enter Employee ID">
+        <button class="button" onclick="searchEmployee()">Search</button>
+
+        <div id="adminEmployeeTable" style="display: none;">
+            <h3>Employee Details</h3>
+            <table id="employeeDetailsTable">
+                <tr><th>Department</th><th>Employee ID</th><th>Employee Name</th><th>Month</th><th>Year</th></tr>
+            </table>
+
+            <h3>Shift Details</h3>
+            <table id="shiftDetailsTable">
+                <tr><th>Date</th><th>Shift</th><th>In</th><th>Out</th><th>SA (mts)</th><th>Reason</th><th>Remarks</th></tr>
+            </table>
+        </div>
+        <button class="button" onclick="approve()">Approve</button>
+        <button class="button" onclick="reject()">Reject</button>
+        <button class="button" onclick="goBack()">Back</button>
+    </div>
+
+    <div id="rejectionModal" style="display: none;">
+        <h2>Rejection Remarks</h2>
+        <textarea id="rejectionRemarks" rows="4" cols="50" placeholder="Enter rejection remarks..."></textarea><br>
+        <button class="button" onclick="submitRejection()">Submit</button>
+        <button class="button" onclick="closeRejectionModal()">Back</button>
+    </div>
+
+    <script>
+        const users = {
+            employee: { username: "employee1", password: "emp123" },
+            admin: { username: "admin1", password: "admin123" }
+        };
+
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === users.employee.username && password === users.employee.password) {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("EmployeePanel").style.display = "block";
+                document.getElementById("adminPanel").style.display = "none";
+            } else if (username === users.admin.username && password === users.admin.password) {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("adminPanel").style.display = "block";
+                document.getElementById("EmployeePanel").style.display = "none";
+            } else {
+                alert("Invalid username or password!");
+            }
+        }
+
+        function goBack() {
+            document.getElementById("login").style.display = "block";
+            document.getElementById("EmployeePanel").style.display = "none";
+            document.getElementById("adminPanel").style.display = "none";
+        }
+
+        function closeRejectionModal() {
+            document.getElementById("rejectionModal").style.display = "none";
+        }
+
+        function saveEmployeeData() {
+            const employeeData = {
+                department: document.getElementById("empDepartment").value,
+                empId: document.getElementById("empId").value,
+                empName: document.getElementById("empName").value,
+                month: document.getElementById("empMonth").value,
+                year: document.getElementById("empYear").value,
+                shiftDate: document.getElementById("empShiftDate").value,
+                shift: document.getElementById("empShift").value,
+                in: document.getElementById("empIn").value,
+                out: document.getElementById("empOut").value,
+                sa: document.getElementById("empSA").value,
+                reason: document.getElementById("empReason").value,
+                remarks: document.getElementById("empRemarks").value
+            };
+
+            localStorage.setItem("employee_" + employeeData.empId, JSON.stringify(employeeData));
+            alert("Employee data saved successfully!");
+        }
+
+        function searchEmployee() {
+            const empId = document.getElementById("searchEmployeeId").value;
+            const data = localStorage.getItem("employee_" + empId);
+
+            if (data) {
+                const employeeData = JSON.parse(data);
+                document.getElementById("adminEmployeeTable").style.display = "block";
+
+                const empTable = document.getElementById("employeeDetailsTable");
+                empTable.rows[1] && empTable.deleteRow(1); // Clear previous row if exists
+                empTable.insertRow(1).innerHTML = `
+                    <td>${employeeData.department}</td>
+                    <td>${employeeData.empId}</td>
+                    <td>${employeeData.empName}</td>
+                    <td>${employeeData.month}</td>
+                    <td>${employeeData.year}</td>
+                `;
+
+                const shiftTable = document.getElementById("shiftDetailsTable");
+                shiftTable.rows[1] && shiftTable.deleteRow(1); // Clear previous row if exists
+                shiftTable.insertRow(1).innerHTML = `
+                    <td>${employeeData.shiftDate}</td>
+                    <td>${employeeData.shift}</td>
+                    <td>${employeeData.in}</td>
+                    <td>${employeeData.out}</td>
+                    <td>${employeeData.sa}</td>
+                    <td>${employeeData.reason}</td>
+                    <td>${employeeData.remarks}</td>
+                `;
+            } else {
+                alert("Employee not found!");
+            }
+        }
+
+        function approve() {
+            alert("Record approved and saved.");
+        }
+
+        function reject() {
+            document.getElementById("rejectionModal").style.display = "block";
+        }
+
+        function submitRejection() {
+            const empId = document.getElementById("searchEmployeeId").value;
+            const remarks = document.getElementById("rejectionRemarks").value;
+
+            alert(`Record rejected for Employee ID: ${empId}\nRemarks: ${remarks}`);
+            closeRejectionModal();
+        }
+    </script>
+</body>
+</html>
