@@ -31,74 +31,80 @@
         <h2 class="employee">Employee Panel</h2>
         <table>
             <thead>
-            <tr>
-                <th>Department</th>
-                <th>Employee ID</th>
-                <th>Employee Name</th>
-            </tr>
+                <tr>
+                    <th>Department</th>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                </tr>
             </thead>
-            <tr>
-                <td><input class="input-tabs" type="text" id="empDepartment"></td>
-                <td><input class="input-tabs" type="text" id="empId"></td>
-                <td><input class="input-tabs" type="text" id="empName"></td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td><input class="input-tabs" type="text" id="empDepartment"></td>
+                    <td><input class="input-tabs" type="text" id="empId"></td>
+                    <td><input class="input-tabs" type="text" id="empName"></td>
+                </tr>
+            </tbody>
         </table>
         <div class="years">
             <table>
                 <thead>
-                <tr>
-                    <th>Month</th>
-                    <th>Year</th>
-                </tr>
+                    <tr>
+                        <th>Month</th>
+                        <th>Year</th>
+                    </tr>
                 </thead>
-                <tr>
-                    <td>
-                        <select id="empMonth" class="calender">
-                            <option value="January">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="September">September</option>
-                            <option value="October">October</option>
-                            <option value="November">November</option>
-                            <option value="December">December</option>
-                        </select>
-                    </td>
-                    <td><input class="yrs" type="number" id="empYear" min="2000" max="2100" placeholder="Year"></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select id="empMonth" class="calender">
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </td>
+                        <td><input class="yrs" type="number" id="empYear" min="2000" max="2100" placeholder="Year"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div class="order">
             <table>
                 <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Shift</th>
-                    <th>In</th>
-                    <th>Out</th>
-                    <th>SA (mts)</th>
-                    <th>Reason</th>
-                    <th>Remarks</th>
-                </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Shift</th>
+                        <th>In</th>
+                        <th>Out</th>
+                        <th>SA (mts)</th>
+                        <th>Reason</th>
+                        <th>Remarks</th>
+                    </tr>
                 </thead>
-                <tr>
-                    <td><input class="input-d" type="date" id="empShiftDate"></td>
-                    <td><input class="input-d" type="text" id="empShift"></td>
-                    <td><input class="input-d" type="time" id="empIn"></td>
-                    <td><input class="input-d" type="time" id="empOut"></td>
-                    <td><input class="input-d" type="number" id="empSA"></td>
-                    <td>
-                        <select class="input-d" id="empReason">
-                            <option value="Personal">Personal</option>
-                            <option value="Company">Company</option>
-                        </select>
-                    </td>
-                    <td><input class="input-d" type="text" id="empRemarks"></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td><input class="input-d" type="date" id="empShiftDate"></td>
+                        <td><input class="input-d" type="text" id="empShift"></td>
+                        <td><input class="input-d" type="time" id="empIn"></td>
+                        <td><input class="input-d" type="time" id="empOut"></td>
+                        <td><input class="input-d" type="number" id="empSA"></td>
+                        <td>
+                            <select class="input-d" id="empReason">
+                                <option value="Personal">Personal</option>
+                                <option value="Company">Company</option>
+                            </select>
+                        </td>
+                        <td><input class="input-d" type="text" id="empRemarks"></td>
+                    </tr>
+                </tbody>
             </table>
             <button class="button" onclick="saveEmployeeData()">Submit</button>
             <button class="button" onclick="goBack()">LogOut</button>
@@ -109,21 +115,28 @@
         <h2 class="addm">Admin Panel</h2>
         <input type="text" class="search-emp" id="searchEmployeeId" placeholder="Enter Employee ID">
         <button class="button" onclick="searchEmployee()">Search</button>
-
-        <div id="adminEmployeeTable" style="display: none;">
+        <div id="adminEmployeeTable" class="emp-table" style="display: none;">
             <h3>Employee Details</h3>
-            <table id="employeeDetailsTable">
-                <tr><th>Department</th><th>Employee ID</th><th>Employee Name</th><th>Month</th><th>Year</th></tr>
+            <table class="emp-t">
+                <thead>
+                    <tr><th>Department</th><th>Employee ID</th><th>Employee Name</th><th>Month</th><th>Year</th></tr>
+                </thead>
+                <tbody id="employeeDetailsTable">
+                </tbody>
             </table>
 
             <h3>Shift Details</h3>
-            <table id="shiftDetailsTable">
-                <tr><th>Date</th><th>Shift</th><th>In</th><th>Out</th><th>SA (mts)</th><th>Reason</th><th>Remarks</th></tr>
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Shift</th><th>In</th><th>Out</th><th>SA (mts)</th><th>Reason</th><th>Remarks</th></tr>
+                </thead>
+                <tbody id="shiftDetailsTable">
+                </tbody>
             </table>
         </div>
         <button class="button" onclick="approve()">Approve</button>
         <button class="button" onclick="reject()">Reject</button>
-        <button class="button" onclick="goBack()">Back</button>
+        <button class="button" onclick="goBack()">LogOut</button>
     </div>
 
     <div id="rejectionModal" style="display: none;">
@@ -132,7 +145,7 @@
         <button class="button" onclick="submitRejection()">Submit</button>
         <button class="button" onclick="closeRejectionModal()">Back</button>
     </div>
-
+        <!--Javascript for connection-->>
     <script>
         const users = {
             employee: { username: "employee1", password: "emp123" },
@@ -146,11 +159,9 @@
             if (username === users.employee.username && password === users.employee.password) {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("EmployeePanel").style.display = "block";
-                document.getElementById("adminPanel").style.display = "none";
             } else if (username === users.admin.username && password === users.admin.password) {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("adminPanel").style.display = "block";
-                document.getElementById("EmployeePanel").style.display = "none";
             } else {
                 alert("Invalid username or password!");
             }
@@ -195,18 +206,16 @@
                 document.getElementById("adminEmployeeTable").style.display = "block";
 
                 const empTable = document.getElementById("employeeDetailsTable");
-                empTable.rows[1] && empTable.deleteRow(1); // Clear previous row if exists
-                empTable.insertRow(1).innerHTML = `
+                empTable.innerHTML = `<tr>
                     <td>${employeeData.department}</td>
                     <td>${employeeData.empId}</td>
                     <td>${employeeData.empName}</td>
                     <td>${employeeData.month}</td>
                     <td>${employeeData.year}</td>
-                `;
+                </tr>`;
 
                 const shiftTable = document.getElementById("shiftDetailsTable");
-                shiftTable.rows[1] && shiftTable.deleteRow(1); // Clear previous row if exists
-                shiftTable.insertRow(1).innerHTML = `
+                shiftTable.innerHTML = `<tr>
                     <td>${employeeData.shiftDate}</td>
                     <td>${employeeData.shift}</td>
                     <td>${employeeData.in}</td>
@@ -214,7 +223,7 @@
                     <td>${employeeData.sa}</td>
                     <td>${employeeData.reason}</td>
                     <td>${employeeData.remarks}</td>
-                `;
+                </tr>`;
             } else {
                 alert("Employee not found!");
             }
